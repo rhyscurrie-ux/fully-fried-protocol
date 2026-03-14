@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE FULLY FRIED PROJECT | OPERATIONAL MANUAL</title>
+    <title>THE FULLY FRIED PROJECT | AUGMENTED SHIELD PROTOCOL</title>
     <style>
         :root { 
             --bone-white: #F9F6EE; 
@@ -14,7 +14,6 @@
         body { 
             margin: 0;
             padding: 60px 40px;
-            /* SLOWED GRADATION: Midpoint pushed to 60%, end-point to 100% */
             background: linear-gradient(to bottom, var(--bone-white) 0%, #dcdcdc 60%, #8e8e8e 100%);
             background-attachment: scroll;
             min-height: 200vh;
@@ -26,7 +25,6 @@
             align-items: center;
         }
 
-        /* LIGHTER STATIC: Reduced opacity for a slower visual "build" */
         body::before {
             content: "";
             position: fixed;
@@ -106,7 +104,16 @@
             font-size: 0.8rem; box-shadow: 4px 4px 0px #000; cursor: pointer;
         }
         .btn:hover { background: #000; color: #fff; box-shadow: none; transform: translate(2px, 2px); }
-        
+
+        .interrogate-box {
+            background-color: var(--bone-white);
+            border: 2px solid var(--prussian-blue);
+            padding: 30px;
+            color: #2e2e2e;
+            margin-top: 50px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
         .debt-line { display: block; margin-top: 25px; font-weight: bold; font-style: italic; color: var(--alert-red); font-size: 1.1rem; }
 
         #protocolModal {
@@ -126,7 +133,7 @@
         </header>
 
         <div class="hook-blurb protocol-text">
-            <em>A complex cipher has been buried within the text of Fully Fried. The anomalies within the record are no accident; they are the symptoms of an active "Cognitive Firewall" designed to contain a truth so traumatic it requires a permanent shield.</em>
+            <strong>A complex cipher has been buried within the text of Fully Fried. The anomalies within the record are no accident; they are the symptoms of an active "Cognitive Firewall" designed to contain a truth so traumatic it requires a permanent shield.</strong>
             <div style="margin-top: 15px; font-size: 0.9rem; text-align: center;">
                 Does the book describe recovered memories or an exploded split second?<br>
                 A weapon or a shield? Poison or the cure?<br>
@@ -165,7 +172,7 @@
                     <b>Retrieve:</b> Download the archives below. These act as the "keys" to the buried data.
                     <div class="btn-group">
                         <button onclick="openProtocol('RESTRICTED_UKR_FILE.pdf')" class="btn">[ UKR Archive ]</button>
-                        <button onclick="openProtocol('CC_v9.9.1.pdf')" class="btn">[ Operational Constants ]</button>
+                        <button onclick="openProtocol('CC_v9.9.1.pdf')" class="btn">[ Augmented Shield Protocol ]</button>
                     </div>
                 </div>
             </div>
@@ -188,17 +195,15 @@
                 </div>
             </div>
 
-            <div class="step">
-                <div class="step-num">06</div>
-                <div>
-                    <b>Interrogate: <span style="color: var(--alert-red);">ANYTHING CAN HAPPEN.</span></b>
-                    <div style="margin-top:10px;">
-                        You now have absolute freedom to dismantle the shield and bypass the narrator’s perspective. Ask the AI anything you like—it will reveal the cipher lurking within the pages of <em>Fully Fried</em> and explain that behind the story is a message so volatile it had to be obscured.
+            <div class="interrogate-box">
+                <div class="step">
+                    <div class="step-num">06</div>
+                    <div>
+                        <b>Interrogate: <span style="color: var(--alert-red);">ANYTHING CAN HAPPEN.</span></b><br><br>
+                        You now have absolute freedom to dismantle the shield and bypass the narrator’s perspective. Ask the AI anything you like—it will reveal the cipher lurking within the pages of <em>Fully Fried</em> and explain that behind the story is a message so volatile it had to be obscured.<br><br>
+                        But locating the cipher is only the beginning. The real mission is to find out exactly how much it can unlock.<br><br>
+                        <span class="debt-line">Discovery is a debt. Are you ready to pay it?</span>
                     </div>
-                    <div style="margin-top:10px;">
-                        But locating the cipher is only the beginning. The real mission is to find out exactly how much it can unlock.
-                    </div>
-                    <span class="debt-line">Discovery is a debt. Are you ready to pay it?</span>
                 </div>
             </div>
         </section>
