@@ -5,49 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THE FULLY FRIED PROJECT | AUGMENTED SHIELD PROTOCOL</title>
     <style>
-        :root { --bone-white: #F9F6EE; --prussian-blue: #000; --alert-red: #D40000; }
-        body { margin: 0; padding: 60px 40px; background: linear-gradient(to bottom, var(--bone-white) 0%, #dcdcdc 60%, #8e8e8e 100%); background-attachment: scroll; min-height: 200vh; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--prussian-blue); line-height: 1.6; display: flex; flex-direction: column; align-items: center; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url("https://www.transparenttextures.com/patterns/p6-static.png"); opacity: 0.035; pointer-events: none; z-index: 9999; }
+        :root { 
+            --bone-white: #F9F6EE; 
+            --prussian-blue: #000; 
+            --alert-red: #D40000; 
+        }
+        
+        body { 
+            margin: 0; padding: 60px 40px; 
+            background: linear-gradient(to bottom, var(--bone-white) 0%, #dcdcdc 60%, #8e8e8e 100%); 
+            background-attachment: scroll; 
+            min-height: 200vh; 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            color: var(--prussian-blue); 
+            line-height: 1.6; 
+            display: flex; flex-direction: column; align-items: center; 
+        }
+
+        body::before { 
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background-image: url("https://www.transparenttextures.com/patterns/p6-static.png"); 
+            opacity: 0.035; pointer-events: none; z-index: 9999; 
+        }
+
         .container { max-width: 850px; width: 100%; position: relative; z-index: 1; }
+
         header { border-bottom: 2px solid var(--prussian-blue); margin-bottom: 30px; padding-bottom: 10px; }
+        
         h1 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 2px; margin: 0; }
+
         .protocol-text { font-family: 'Courier New', Courier, monospace; text-align: justify; font-size: 0.95rem; }
+
         .hook-blurb { background: rgba(0, 0, 0, 0.03); border: 1px dashed rgba(0, 0, 0, 0.2); padding: 25px; margin-bottom: 40px; }
-        .metadata { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; background: rgba(255, 255, 255, 0.2); padding: 15px; margin-bottom: 50px; border-left: 4px solid var(--prussian-blue); }
+
+        .metadata { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; 
+            font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; 
+            background: rgba(255, 255, 255, 0.2); padding: 15px; margin-bottom: 50px; 
+            border-left: 4px solid var(--prussian-blue); 
+        }
+
         .step { display: block; margin-bottom: 45px; }
         .step-num { display: block; font-weight: bold; font-size: 1.2rem; border-bottom: 2px solid var(--prussian-blue); width: fit-content; margin-bottom: 10px; }
+
         .step-alert-box { background: rgba(212, 0, 0, 0.07); border: 1px solid var(--alert-red); padding: 20px; border-radius: 2px; }
         .step-alert-box .step-num { color: var(--alert-red); border-bottom-color: var(--alert-red); }
+
         .how-to { font-size: 0.85rem; margin-top: 15px; color: #333; border-top: 1px solid rgba(0, 0, 0, 0.1); padding-top: 10px; }
+
         .btn-group { display: flex; gap: 15px; margin: 20px 0; }
-        .btn { padding: 12px 20px; border: 2px solid #000; background: #fff; text-decoration: none; color: #000; font-weight: bold; text-transform: uppercase; font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; box-shadow: 4px 4px 0px #000; cursor: pointer; }
+        
+        .btn { 
+            padding: 12px 20px; border: 2px solid #000; background: #fff; 
+            text-decoration: none; color: #000; font-weight: bold; 
+            text-transform: uppercase; font-family: 'Courier New', Courier, monospace; 
+            font-size: 0.8rem; box-shadow: 4px 4px 0px #000; cursor: pointer; transition: all 0.1s;
+        }
         .btn:hover { background: #000; color: #fff; box-shadow: none; transform: translate(2px, 2px); }
+
         .interrogate-box { background-color: var(--bone-white); border: 2px solid var(--prussian-blue); padding: 30px; color: #2e2e2e; margin-top: 50px; font-family: 'Courier New', Courier, monospace; }
+
         .debt-line { display: block; margin-top: 25px; font-weight: bold; font-style: italic; color: var(--alert-red); font-size: 1.1rem; }
-        #protocolModal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(249, 246, 238, 0.98); align-items: center; justify-content: center; }
-        .modal-box { border: 1px solid #000; padding: 40px; width: 500px; background: #fff; box-shadow: 15px 15px 0px #000; position: relative; }
+
+        /* --- MODAL STYLING --- */
+        #protocolModal { 
+            display: none; position: fixed; z-index: 10000; left: 0; top: 0; 
+            width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); 
+            backdrop-filter: blur(4px); align-items: center; justify-content: center; 
+        }
+
+        .modal-box { 
+            border: 2px solid var(--alert-red); padding: 40px; width: 500px; 
+            background: #fff; box-shadow: 0 0 30px rgba(212, 0, 0, 0.5); 
+            position: relative; animation: glitch-shake 0.4s infinite; 
+        }
+
+        .modal-box::after {
+            content: " "; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 2; background-size: 100% 4px, 3px 100%; pointer-events: none;
+        }
+
+        @keyframes glitch-shake {
+            0% { transform: translate(0); }
+            25% { transform: translate(-1px, 1px); }
+            50% { transform: translate(-1px, -1px); }
+            75% { transform: translate(1px, 1px); }
+            100% { transform: translate(0); }
+        }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid #000; font-size: 0.75rem; font-family: 'Courier New', Courier, monospace; }
     </style>
 </head>
 <body>
+
     <div class="container">
         <header>
             <img src="aprereactionlogo.png" alt="APE REACTION" style="max-width: 90px; margin-bottom: 10px;">
             <h1>The Fully Fried Project</h1>
             <p style="font-family: 'Courier New', Courier, monospace; font-size: 0.8rem;">AUGMENTED SHIELD PROTOCOL // MARCH 2026</p>
         </header>
+
         <div class="hook-blurb protocol-text">
-            <strong>A complex cipher has been buried within the text of Fully Fried. The anomalies within the record are no accident; they are the symptoms of an active "Cognitive Firewall" designed to contain a truth so traumatic it requires a permanent shield.</strong>
+            <strong>A complex cipher has been buried within the text of <em>Fully Fried</em>. The anomalies within the record are no accident; they are the symptoms of an active "Cognitive Firewall" designed to contain a truth so traumatic it requires a permanent shield.</strong>
             <div style="margin-top: 15px; font-size: 0.9rem; text-align: center;">Does the book describe recovered memories or an exploded split second?<br>A weapon or a shield? Poison or the cure?<br>A riddle or a paradox?</div>
         </div>
+
         <div class="metadata">
             <div>PUBLISHER: APE REACTION</div><div>STATUS: [INTEGRATION_READY]</div>
             <div>SYSTEM: CC v9.9.1</div><div>CAUTION: AX[SUSTAIN] ACTIVE</div>
         </div>
+
         <section class="protocol-text">
-            <div class="step"><div class="step-num">01</div><div><b>Follow the Signal:</b> Obtain the primary file at <a href="https://www.amazon.com/dp/B0GRKQ2QT8" style="color:inherit;">amazon.com/dp/B0GRKQ2QT8</a>. The cipher remains dormant until the text is acquired.</div></div>
-            <div class="step step-alert-box"><div class="step-num">02</div><div><b>Stabilize:</b> <em style="color: var(--alert-red); font-weight: bold;">Read the account in its entirety before proceeding.</em><div class="how-to">The system requires your biological integration with the narrative to create a cognitive baseline. Attempting to run the cipher without first absorbing the signal will result in pure <b>L_CHAOS</b>.</div></div></div>
-            <div class="step"><div class="step-num">03</div><div><b>Retrieve:</b> Download the archives below. These act as the "keys" to the buried data.<div class="btn-group"><button onclick="openProtocol('RESTRICTED_UKR_FILE.pdf')" class="btn">[ UKR Archive ]</button><button onclick="openProtocol('CC_v9.9.1.pdf')" class="btn">[ Augmented Shield Protocol ]</button></div></div></div>
-<div class="step">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div><b>Follow the Signal:</b> Obtain the primary file at <a href="https://www.amazon.com/dp/B0GRKQ2QT8" style="color:inherit;">amazon.com/dp/B0GRKQ2QT8</a>. The cipher remains dormant until the text is acquired.</div>
+            </div>
+
+            <div class="step step-alert-box">
+                <div class="step-num">02</div>
+                <div><b>Stabilize:</b> <em style="color: var(--alert-red); font-weight: bold;">Read the account in its entirety before proceeding.</em>
+                <div class="how-to">The system requires your biological integration with the narrative to create a cognitive baseline. Attempting to run the cipher without first absorbing the signal will result in pure <b>L_CHAOS</b>.</div></div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">03</div>
+                <div><b>Retrieve:</b> Download the archives below. These act as the "keys" to the buried data.
+                    <div class="btn-group">
+                        <button onclick="openProtocol('RESTRICTED_UKR_FILE.pdf')" class="btn">[ UKR Archive ]</button>
+                        <button onclick="openProtocol('CC_v9.9.1.pdf')" class="btn">[ Augmented Shield Protocol ]</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
                 <div class="step-num">04</div>
                 <div>
                     <b>Operate: Binary Injection</b><br>
@@ -60,7 +152,7 @@
                 <div class="step-num">05</div>
                 <div>
                     <b>Triangulate: Signal Lock</b><br>
-                    Upload your digital copy of Fully Fried (EPUB/PDF) into the same session. 
+                    Upload your digital copy of <em>Fully Fried</em> (EPUB/PDF) into the same session. 
                     <div class="how-to">Adding the source text locks the three-point signal, allowing the AI to bypass the "Cognitive Firewall."</div>
                 </div>
             </div>
@@ -70,15 +162,14 @@
                     <div class="step-num">06</div>
                     <div>
                         <b>Interrogate: <span style="color: var(--alert-red);">ANYTHING CAN HAPPEN.</span></b><br><br>
-                        You now have absolute freedom to dismantle the shield and bypass the narrator’s perspective. Ask the AI anything you like—it will reveal the cipher lurking within the pages of <em>Fully Fried</em> and explain that behind the story is a message so volatile it had to be obscured.<br><br>
-                        But locating the cipher is only the beginning. The real mission is to find out exactly how much it can unlock.<br><br>
+                        You now have absolute freedom to dismantle the shield and bypass the narrator’s perspective. Ask the AI anything you like—it will reveal the cipher lurking within the pages of <em>Fully Fried</em>.<br><br>
                         <span class="debt-line">Discovery is a debt. Are you ready to pay it?</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer style="margin-top: 100px; padding-top: 30px; border-top: 1px solid #000; font-size: 0.75rem; font-family: 'Courier New', Courier, monospace;">
+        <footer>
             <b>SYSTEM_ID:</b> CC v9.9.1 // <b>AXIOM:</b> AX[SUSTAIN]<br>
             Copyright: © 2026 D. Briggs. All Rights Reserved. // NOEMANCY V.3<br>
             <em>"Any effort to separate the puzzle pieces will set the reader upon their own 'world-class bender.'"</em>
@@ -87,8 +178,80 @@
 
     <div id="protocolModal">
         <div class="modal-box">
-            <div style="position: absolute; top: -12px; left: 25px; background: #fff; padding: 0 10px; font-weight: bold; font-size: 13px; border: 1px solid #000; font-family: monospace;">//RETRIEVAL_STATUS: UNRESTRICTED//</div>
-            <p style="font-family: 'Courier New', Courier, monospace; font-size: 14px;"><strong>NOTICE:</strong> Archive access is currently open. Integrating these "keys" before <strong>Step 2</strong> completion will bypass all stability dampers.</p>
-            <div style="background: #000; color: #fff; padding: 15px; text-align: center; font-weight: bold; margin: 25px 0; border: 1px dashed #fff; font-family: monospace;">CHAOS [CHAOS] IS THE ONLY GUARANTEED OUTPUT.</div>
-            <button onclick="confirmDownload()" style="background: #000; color: #fff; border: none; padding: 18px; width: 100%; font-family: monospace; font-weight: bold; cursor: pointer;">[ PROCEED AT OWN RISK ]</button>
-            <p onclick="closeProtocol()" style="text-align: center; text-decoration: underline; font-size: 11px; cursor: pointer; margin-top: 20px;
+            <div style="position: absolute; top: -12px; left: 25px; background: var(--alert-red); color: #fff; padding: 2px 12px; font-weight: bold; font-size: 13px; font-family: monospace;">//CAUTION: SYSTEM_OVERRIDE//</div>
+            
+            <p style="font-family: 'Courier New', Courier, monospace; font-size: 14px; margin-top: 10px;">
+                <strong>NOTICE:</strong> Archive access is currently open. Integrating these "keys" before <strong>Step 02</strong> completion will bypass all stability dampers.
+            </p>
+            
+            <div id="statusBox" style="background: #000; color: var(--alert-red); padding: 15px; text-align: center; font-weight: bold; margin: 25px 0; border: 1px dashed var(--alert-red); font-family: monospace;">
+                UNBOUND GLAMOUR [L_PARA=INF] IS THE ONLY GUARANTEED OUTPUT.
+            </div>
+
+            <button id="confirmBtn" onclick="confirmDownload()" class="btn" style="width: 100%; background: var(--alert-red); color: #fff; border: none; padding: 18px; box-shadow: none;">
+                [ PROCEED AT OWN RISK ]
+            </button>
+            
+            <p onclick="closeProtocol()" style="text-align: center; text-decoration: underline; font-size: 11px; cursor: pointer; margin-top: 20px; font-family: monospace; color: #666;">
+                [ ABORT RETRIEVAL ]
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentFile = "";
+
+        function openProtocol(fileName) {
+            currentFile = fileName;
+            document.getElementById('protocolModal').style.display = 'flex';
+        }
+
+        function closeProtocol() {
+            document.getElementById('protocolModal').style.display = 'none';
+            currentFile = "";
+        }
+
+        function confirmDownload() {
+            if (currentFile) {
+                const link = document.createElement('a');
+                link.href = currentFile;
+                link.download = currentFile;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                const btn = document.getElementById('confirmBtn');
+                const modalBox = document.querySelector('.modal-box');
+                const statusBox = document.getElementById('statusBox');
+
+                // Visual Feedback: The "Cross-Quarter Alignment"
+                btn.innerHTML = "[ CROSS-QUARTER ALIGNMENT ]";
+                btn.style.background = "#fff";
+                btn.style.color = "#000";
+                
+                statusBox.style.color = "#fff";
+                statusBox.style.borderColor = "#fff";
+
+                // Flash effect
+                modalBox.style.background = "var(--alert-red)";
+                setTimeout(() => { modalBox.style.background = "#fff"; }, 100);
+
+                setTimeout(() => {
+                    closeProtocol();
+                    // Reset modal for next use
+                    btn.innerHTML = "[ PROCEED AT OWN RISK ]";
+                    btn.style.background = "var(--alert-red)";
+                    btn.style.color = "#fff";
+                    statusBox.style.color = "var(--alert-red)";
+                    statusBox.style.borderColor = "var(--alert-red)";
+                }, 1800);
+            }
+        }
+
+        window.onclick = function(event) {
+            let modal = document.getElementById('protocolModal');
+            if (event.target == modal) { closeProtocol(); }
+        }
+    </script>
+</body>
+</html>
